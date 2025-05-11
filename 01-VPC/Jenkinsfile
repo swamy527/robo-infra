@@ -1,7 +1,5 @@
 pipeline {
-    agent { 
-           label 'marsh' 
-     }
+    agent any
     options {
         timeout(time:1, unit:'HOURS')
         disableConcurrentBuilds()
@@ -29,7 +27,7 @@ pipeline {
             steps {
                 sh '''
                   cd 01-VPC
-                  terraform destroy -auto-approve
+                  terraform apply -auto-approve
                 '''
             }
         }
