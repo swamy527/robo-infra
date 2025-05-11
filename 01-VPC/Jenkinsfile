@@ -25,5 +25,13 @@ pipeline {
                 '''
             }
         }
+        stage('apply') {
+            steps {
+                sh '''
+                  cd 01-VPC
+                  terraform apply -auto-approve
+                '''
+            }
+        }
     }
 }
