@@ -2,12 +2,26 @@ pipeline {
     agent { 
            label 'marsh' 
      }
+    options {
+        timeout(time:1, unit:'HOURS')
+        disableConcurrentBuilds()
+        ansiColor('xterm')
+    }
+
     stages {
-        stage('erraform initialize') {
+        stage('terraform initialize') {
             steps {
                 sh '''
                   cd 01-VPC
                   terraform init
+                '''
+            }
+        }
+        stage('plan') {
+            steps {
+                sh '''
+                  cd 01-VPC
+                  terraform plan
                 '''
             }
         }
