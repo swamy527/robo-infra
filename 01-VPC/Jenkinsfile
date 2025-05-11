@@ -1,0 +1,15 @@
+pipeline {
+    agent { 
+           label 'marsh' 
+     }
+    stages {
+        stage('erraform initialize') {
+            steps {
+                sh '''
+                  cd 01-VPC
+                  terraform init
+                '''
+            }
+        }
+    }
+}
